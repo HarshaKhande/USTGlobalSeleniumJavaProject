@@ -2,7 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.edge.FireFoxDriver;
+import org.openqa.selenium.firefox.FireFoxDriver;
 
 public class LoginPage {
 	
