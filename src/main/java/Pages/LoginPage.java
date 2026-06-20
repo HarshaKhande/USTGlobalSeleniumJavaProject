@@ -2,7 +2,7 @@ package Pages;
 
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
-import org.openqa.selenium.firefox.FireFoxDriver;
+import org.openqa.selenium.firefox.FirefoxDriver;
 
 public class LoginPage {
 	
@@ -17,7 +17,7 @@ public class LoginPage {
 	
 	public void login(String user, String pass) throws InterruptedException	 {
 		
-		driver = new FirefoxDriver();
+	driver = new FirefoxDriver();
 		
 		driver.get("https://opensource-demo.orangehrmlive.com/web/index.php/auth/login");
 		
