@@ -21,6 +21,13 @@ jobs:
         with:
           path: ~/.m2
           key: maven-${{ hashFiles('**/pom.xml') }}
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v2
+
+      - name: Verify Chrome
+        run: |
+          google-chrome --version
+
       - name: Build Project
         run: mvn clean compile
       - name: Run TestNG Tests
