@@ -1,0 +1,42 @@
+name: Selenium Test Execution
+'on':
+  push:
+    branches:
+      - main
+  pull_request: null
+  workflow_dispatch: null
+jobs:
+  selenium-test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Code
+        uses: actions/checkout@v4
+      - name: Setup Java
+        uses: actions/setup-java@v4
+        with:
+          distribution: temurin
+          java-version: '17'
+      - name: Cache Maven
+        uses: actions/cache@v4
+        with:
+          path: ~/.m2
+          key: maven-${{ hashFiles('**/pom.xml') }}
+      - name: Install Chrome
+        uses: browser-actions/setup-chrome@v2
+
+      - name: Verify Chrome
+        run: |
+          google-chrome --version
+
+      - name: Build Project
+        run: mvn clean compile
+      - name: Run TestNG Tests
+        run: mvn clean test
+      - name: Upload Reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-report
+          path: |
+            test-output/
+            target/surefire-reports/
